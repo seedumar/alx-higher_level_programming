@@ -1,19 +1,32 @@
 #!/usr/bin/python3
 
-if __name__ == "__main__":
-    """Handle basic arithmetic operations."""
-    from calculator_1 import add, sub, mul, div
-    import sys
+from sys import argv, exit as sys_exit
 
-    if len(sys.argv) - 1 != 3:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+from calculator_1 import add, sub, mul, div
+
+
+if __name__ == "__main__":
 
     ops = {"+": add, "-": sub, "*": mul, "/": div}
-    if sys.argv[2] not in list(ops.keys()):
-        print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
 
-    a = int(sys.argv[1])
-    b = int(sys.argv[3])
-    print("{} {} {} = {}".format(a, sys.argv[2], b, ops[sys.argv[2]](a, b)))
+    try:
+        a, op, b = argv[1:]
+
+    except ValueError:
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+        sys_exit(1)
+
+    try:
+        print(a, op, b, "=", ops[op](int(a), int(b)))
+
+    except KeyError:
+        print("Unknown operator. Available operators: +, -, * and /")
+        sys_exit(1)
+
+    except ValueError:
+        print("Invalid operand. Must be an integer")
+        sys_exit(1)
+
+    except ZeroDivisionError:
+        print("Invalid operation. Cannot divide by zero")
+        sys_exit(1)
