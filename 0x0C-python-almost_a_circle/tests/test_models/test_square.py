@@ -1,44 +1,24 @@
 #!/usr/bin/python3
+"""Base unittest
 """
-A Square class
-"""
-from models.rectangle import Rectangle
+
+import unittest
+from models.square import Square
 
 
-class Square(Rectangle):
-    """Square repesentation"""
+class TestSquare(unittest.TestCase):
+    """Implementation for Square model"""
 
-    def __init__(self, size: int, x=0, y=0, id=None):
-        """initialization of a square
-        """
-        super().__init__(size, size, x, y, id)
+    def test_initialization_success(self):
+        s1 = Square(5)
+        s2 = Square(10)
+        self.assertEqual(s1.id, 5)
+        self.assertEqual(s2.id, 6)
 
-    @property
-    def size(self):
-        """Get size
-        """
-        return self.width
+    def test_initialization_without_arguments(self):
 
-    @size.setter
-    def size(self, value):
-        """Set size
-        """
-        self.width = value
-        self.height = value
+        self.assertRaises(TypeError, Square)
 
-    def update(self, *args, **kwargs):
-        attrib = ['id', 'size', 'x', 'y']
-        if args:
-            for at, numb in zip(attrib, args):
-                setattr(self, at, numb)
-        elif kwargs:
-            for key, value in kwargs.items():
-                if key in attrib:
-                    setattr(self, key, value)
 
-    def to_dictionary(self) -> dict:
-        id = self.id
-        size = self.__size
-        x = self.x
-        y = self.y
-        return {'id': id, 'x': x, 'size': size, 'y': y}
+if __name__ == '__main__':
+    unittest.main()
