@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """Declare rectangle.py unittest
 """
 import io
@@ -790,4 +791,24 @@ class TestRectangle_to_dictionary(unittest.TestCase):
             r.to_dictionary(1)
 
 if __name__ == "__main__":
+=======
+"""Base unittest
+"""
+
+import unittest
+from models.rectangle import Rectangle
+
+
+class TestRectangle(unittest.TestCase):
+    """Implementation for Rectangle model"""
+
+    def test_initialization(self):
+        r1 = Rectangle(2, 5)
+        self.assertEqual(r1.id, Rectangle._Base__nb_objects)
+        r2 = Rectangle(1, 2)
+        self.assertEqual(r2.id, Rectangle._Base__nb_objects)
+
+
+if __name__ == '__main__':
+>>>>>>> d3ef643d86fa623ad3edc8ce178fc600b4848b66
     unittest.main()
