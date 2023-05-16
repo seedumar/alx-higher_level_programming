@@ -1,2 +1,5 @@
--- Creates a new database
-CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
+-- Display average
+SELECT city, AVG(value) AS avg_temp
+FROM temperatures
+GROUP BY city
+ORDER BY avg_temp DESC;
